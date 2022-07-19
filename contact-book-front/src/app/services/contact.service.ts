@@ -14,7 +14,7 @@ export class ContactService {
   readonly maxNameLenght: number = 50;
   eventEmitter: EventEmitter<any> = new EventEmitter();
 
-  private readonly API: string = 'http://localhost:8080/contacts';
+  private readonly API: string = 'http://localhost:8080/api/contacts';
 
   constructor(
     private httpClient: HttpClient,

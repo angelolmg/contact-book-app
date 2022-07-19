@@ -21,7 +21,7 @@ import com.angelogoes.contactbookapp.repository.ContactRepository;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/api/contacts")
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class ContactController {

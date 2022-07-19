@@ -1,3 +1,5 @@
+import { ContactsNewComponent } from './components/contacts-new/contacts-new.component';
+import { ContactsEditComponent } from './components/contacts-edit/contacts-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +21,8 @@ import { ErrorDialogComponent } from './shared/components/error-dialog/error-dia
     ErrorDialogComponent,
     ConfirmDeletionDialogComponent,
     ContactsComponent,
+    ContactsEditComponent,
+    ContactsNewComponent
 
   ],
   imports: [

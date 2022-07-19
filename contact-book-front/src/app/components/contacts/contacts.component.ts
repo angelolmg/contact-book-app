@@ -31,17 +31,17 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.listCourses();
+    this.listContacts();
     this.listeningEvent();
   }
 
   listeningEvent() {
     this.listSub = this.service.listeningEmitter().subscribe(() => {
-      this.listCourses();
+      this.listContacts();
     });
   }
 
-  listCourses() {
+  listContacts() {
     this.contacts$ = this.service.list().pipe(
       //tap((n) => console.log(n)),
       catchError(() => {
@@ -75,7 +75,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
           this.service.delete(Number(contact.id)).subscribe(
             (_result: any) => {
               this.service.onSuccess('Contato deletado com sucesso.'),
-                this.listCourses();
+                this.listContacts();
             },
             (_error: any) => this.service.onError('Erro ao deletar contato.')
           );

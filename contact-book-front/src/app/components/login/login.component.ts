@@ -1,3 +1,5 @@
+import { ContactService } from './../../services/contact.service';
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
@@ -5,29 +7,41 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup | any;
-  title = 'material-login';
+  loginForm: FormGroup;
 
   constructor(
-    private router:Router
+    private router: Router,
+    private service: LoginService,
+    private contactService: ContactService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
+      login: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
-   }
-
-  ngOnInit(): void {
   }
 
-  onSubmit(){
-    if(!this.loginForm.valid){
+  ngOnInit(): void {}
+
+  onSubmit() {
+    if (!this.loginForm.valid) {
       return;
     }
-    localStorage.setItem('user',this.loginForm.value)
-    this.router.navigate(['/contacts'])
+
+    this.service.checkCredentials(this.loginForm.value).subscribe(
+      (res) => {
+        console.log(res);
+        localStorage.setItem('user', this.loginForm.value);
+        this.router.navigate(['/contacts']);
+      },
+      (_error) => {
+        console.log(_error);
+        this.contactService.onError('Usuário não encontrado');
+        this.loginForm.reset();
+        return;
+      }
+    );
   }
 }

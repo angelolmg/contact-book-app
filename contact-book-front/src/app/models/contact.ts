@@ -2,9 +2,9 @@ export interface Contact {
   id: number;
   name: string;
   phone: string;
-  whatsapp: boolean;
+  //whatsapp: boolean;
   email: string;
-  adresses: string[];
-  active: boolean;
-  dataCadastro: string;
+  //adresses: string[];
+  //active: boolean;
+  //dataCadastro: string;
 }

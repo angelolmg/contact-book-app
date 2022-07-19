@@ -9,24 +9,23 @@
     <div class="example-container">
       <div>
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email" />
+          <input matInput placeholder="Login" formControlName="login" />
           <mat-error
             *ngIf="
-              !loginForm.get('email')?.errors?.required &&
-              loginForm.get('email')?.errors?.email
+              !loginForm.get('login')?.errors?.['required']
             "
           >
-            Please enter a valid email address
+            Please enter a valid login
           </mat-error>
           <mat-error
             *ngIf="
-              loginForm.get('email')?.invalid &&
-              (loginForm.get('email')?.dirty ||
-                loginForm.get('email')?.touched) &&
-              loginForm.get('email')?.errors?.required
+              loginForm.get('login')?.invalid &&
+              (loginForm.get('login')?.dirty ||
+                loginForm.get('login')?.touched) &&
+              loginForm.get('login')?.errors?.['required']
             "
           >
-            Email is required
+            Login is required
           </mat-error>
         </mat-form-field>
       </div>
@@ -43,7 +42,7 @@
               loginForm.get('password')?.invalid &&
               (loginForm.get('password')?.dirty ||
                 loginForm.get('password')?.touched) &&
-              loginForm.get('password')?.errors?.required
+              loginForm.get('password')?.errors?.['required']
             "
           >
             Password is required

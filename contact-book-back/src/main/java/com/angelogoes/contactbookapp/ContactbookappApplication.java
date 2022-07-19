@@ -18,14 +18,14 @@ public class ContactbookappApplication {
 	@Bean
 	CommandLineRunner initDatabase(ContactRepository contactRepository) {
 		return args -> {
-
+			/* 
 			Contact c = new Contact();
-			c.setName("Angular com Spring");
+			c.setName("Angelo");
 			c.setEmail("angelo@gmail.com");
 			c.setPhone("1233456");
 			
 			contactRepository.save(c);
-			
+			*/
 		};
 	}
 
