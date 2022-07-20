@@ -36,7 +36,6 @@ export class ContactsNewComponent implements OnInit {
   onSubmit() {
 
     if (this.form.valid) {
-
       this.service
         .save(this.form.value)
         .pipe(
@@ -46,7 +45,10 @@ export class ContactsNewComponent implements OnInit {
         )
         .subscribe(
           (_result) => this.service.onSuccess('Contato salvo com sucesso.'),
-          (_error) => this.service.onError('Erro ao criar contato.')
+          (_error) => {
+            console.log(_error);
+            this.service.onError('Erro ao criar contato.')
+          }
         );
       this.onCancel();
     }
@@ -54,7 +56,7 @@ export class ContactsNewComponent implements OnInit {
 
   onCancel() {
     // set as pristine first so it doesn't activate the deactivate guard
-    this.form.markAsPristine();
+    //this.form.markAsPristine();
     this.service.onCancel();
   }
 

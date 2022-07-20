@@ -1,4 +1,4 @@
-import { LoginRequest } from './../dto/LoginRequest';
+import { LoginRequest } from '../models/loginRequest'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';

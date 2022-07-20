@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
     this.service.checkCredentials(this.loginForm.value).subscribe(
       (res) => {
         console.log(res);
-        localStorage.setItem('user', this.loginForm.value);
+        localStorage.setItem('login', this.loginForm.value['login']);
+        console.log(this.loginForm.value['login']);
         this.router.navigate(['/contacts']);
       },
       (_error) => {

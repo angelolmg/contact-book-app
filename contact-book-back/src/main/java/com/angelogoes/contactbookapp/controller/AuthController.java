@@ -16,14 +16,14 @@ import com.angelogoes.contactbookapp.service.AuthService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class AuthController {
     
     private final AuthService authService;
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<Boolean> login(@RequestBody LoginRequest loginRequest) {
         boolean loginSuccess = authService.login(loginRequest);
         return new ResponseEntity<>(loginSuccess, HttpStatus.OK);

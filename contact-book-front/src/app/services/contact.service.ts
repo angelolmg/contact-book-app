@@ -6,10 +6,9 @@ import { Observable, delay, first } from 'rxjs';
 import { Contact } from '../models/contact';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContactService {
-
   readonly minNameLenght: number = 1;
   readonly maxNameLenght: number = 50;
   eventEmitter: EventEmitter<any> = new EventEmitter();
@@ -31,15 +30,19 @@ export class ContactService {
   }
 
   list() {
-    return this.httpClient.get<Contact[]>(this.API).pipe(delay(200), first());
+    const url = `${this.API}/by-user/${localStorage.getItem('login')}`;
+    console.log("sending get to " + url);
+    return this.httpClient.get<Contact[]>(url).pipe(delay(200), first());
   }
 
   readById(id: number): Observable<Contact> {
-    const url = `${this.API}/${id}`;
+    const url = `${this.API}/by-id/${id}`;
     return this.httpClient.get<Contact>(url).pipe(first());
   }
 
   save(record: Contact) {
+    record['login'] = localStorage.getItem('login')!;
+    console.log(record['login']);
     return this.httpClient.post<Contact>(this.API, record).pipe(first());
   }
 
@@ -70,6 +73,6 @@ export class ContactService {
   }
 
   onCancel() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/contacts']);
   }
 }

@@ -6,5 +6,7 @@ export interface Contact {
   email: string;
   //adresses: string[];
   //active: boolean;
-  //dataCadastro: string;
+  dataCadastro: string;
+
+  login: string;
 }

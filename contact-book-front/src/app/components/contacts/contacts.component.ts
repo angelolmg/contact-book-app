@@ -2,7 +2,7 @@ import { Contact } from './../../models/contact';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of, Subscription } from 'rxjs';
+import { catchError, Observable, of, Subscription, tap } from 'rxjs';
 import { ContactService } from 'src/app/services/contact.service';
 import { ConfirmDeletionDialogComponent } from 'src/app/shared/components/confirm-deletion-dialog/confirm-deletion-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
@@ -43,7 +43,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   listContacts() {
     this.contacts$ = this.service.list().pipe(
-      //tap((n) => console.log(n)),
+      tap((n) => console.log(n)),
       catchError(() => {
         this.onError('Erro ao carregar contatos.');
         return of([]);
